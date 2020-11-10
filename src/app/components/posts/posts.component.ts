@@ -18,7 +18,6 @@ export class PostsComponent implements OnInit {
   filePath:String;
   constructor(private afs: AngularFireStorage,private postsservice: PostsService, private as: FirebaseService, private router: Router, private fb: FormBuilder, private ps: PostsService) {
     this.addForm = this.fb.group({
-      'title': new FormControl('', [Validators.required, Validators.pattern(/^\S*$/)]),
       'description': new FormControl('', [Validators.required, Validators.pattern(/^\S*$/)]),
       'upload': new FormControl('', [Validators.required, Validators.pattern(/^\S*$/)])
     });
@@ -26,9 +25,6 @@ export class PostsComponent implements OnInit {
   ngOnInit(){
     this.ps.getposts().subscribe(posts=>{
       this.posts=posts;
-      console.log('this.postssssssss', this.posts);
-
-      console.log('postssssssss', posts);
     })
   }
   logout() {
@@ -39,14 +35,10 @@ export class PostsComponent implements OnInit {
     let newposts = new Posts(
       this.addForm.value
     )   
-    console.log(this.filePath)
     this.afs.upload('/images'+Math.random()+this.filePath, this.filePath);
-    
-    console.log('newpost',newposts)
     this.postsservice.addPosts(newposts);
   }
   deletepost(post){
-    console.log('post',post)
     this.postsservice.deletePost(post)
   }
   selectfile(event){

@@ -11,14 +11,10 @@
 
 <div style="background-color: rgb(252, 252, 253);text-align: center;">
 <form [formGroup]="addForm" (ngSubmit)="addpost();addForm.reset()">
-    <!-- <mat-form-field class="example-full-width">
-      <textarea matInput type="text" placeholder="title" name="title" formControlName="title"></textarea>
-    </mat-form-field> -->
     <mat-form-field class="example-full-width">
       <textarea matInput type="text" placeholder="What do you want to talk about?" name="description"
         formControlName="description"></textarea>
     </mat-form-field>
-    <!-- <input type="file" (change)="selectfile($event)" accept=".png,.jpg" /> -->
 
      <input type="file" multiple (change)="selectfile($event)" accept=".png,.jpg" formControlName="upload" > 
 
@@ -30,54 +26,17 @@
       style="margin-right: 0.5%">Post</button>   
 </form>
 </div>
-<div *ngFor="let post of posts">
+<div *ngFor="let post of posts" class='position_card'>
   <mat-card class="example-card">
     <mat-card-content>
-      <p>
-        {{post.description}}
-      </p>
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-        style="width: 300px;height: 200px;padding-left: 1%;">
-        <div>  <p (click)="deletepost(post)" style="text-align: right;color: red;">Delete</p></div>
-    
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>      <img mat-card-image src="https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png"
+          style="width: 500px;height: 300px;padding-left: 2%;padding-right: 2%;"></mat-grid-tile>
+        <mat-grid-tile>{{post.title}} &nbsp; &nbsp; {{post.description}}</mat-grid-tile>
+      </mat-grid-list>
+      <div>  <p (click)="deletepost(post)" style="text-align: right;color: red;">Delete</p></div>
     </mat-card-content>
 
   </mat-card>
 </div>
 </div>
-<!-- <div class="container">
-
-  <ul *ngFor="let post of posts" class = "collection">
-    <li class =" collection-post">{{post.title}}</li>
-
-    <li class =" collection-post">{{post.description}}</li>
-
-    <li class =" collection-post">{{post.upload}}</li>
-  </ul>
-</div> -->
-<!-- <button mat-raised-button color="primary" (click)="add()">Add New Post</button>
-
-  <div *ngIf="showAddForm" style="text-align: center">
-    <form class="example-form" [formGroup]="addForm" (ngSubmit)="addpost()"  #f="ngForm">
-      <mat-card-title style="text-align: center">New Post</mat-card-title>
-      <div class="form-group" style="text-align: center; margin-top: 3%">
-        <mat-form-field class="example-full-width">
-          <mat-label>Title</mat-label>
-          <input matInput type="text" placeholder="Title" name="title" formControlName="title" required>
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <mat-label>Descripton</mat-label>
-          <textarea matInput type="text" placeholder="Description" name="description" formControlName="description"
-            required></textarea>
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <mat-label>Upload</mat-label>
-          <input matInput type="text" placeholder="Upload" name="Upload" formControlName="upload" required>
-        </mat-form-field>
-      </div>
-      <mat-card-actions style="text-align: center">
-        <button [disabled]="!addForm.valid" type="submit"
-          class="btn btn-success col-xl-3 col-lg-4 col-md-4 col-sm-4 col-5" style="margin-right: 0.5%">Post</button>
-      </mat-card-actions>
-    </form>
-  </div> -->

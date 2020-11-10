@@ -28,9 +28,7 @@ export class PostsService {
         return this.posts;
     }
     addPosts(posts: Posts){
-        console.log(posts)
         this.postsCollection.add({
-            title: posts.title,
             description: posts.description,
             upload: posts.upload
           });
